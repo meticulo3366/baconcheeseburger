@@ -3,11 +3,7 @@
         "name": "main",
         "environment": {
             "type": "noflo-nodejs"
-        },
-        "sha": "53fee37affe2f45adb1025baca36a59163fd1ec1",
-        "changed": true,
-        "project": "webservertest",
-        "id": "webservertest_graphs_main"
+        }
     },
     "inports": {},
     "outports": {},
@@ -16,8 +12,8 @@
         "Server": {
             "component": "webserver/Server",
             "metadata": {
-                "x": -612,
-                "y": 576,
+                "x": -972,
+                "y": 504,
                 "width": 72,
                 "height": 72,
                 "label": "Server"
@@ -26,8 +22,8 @@
         "BodyParser": {
             "component": "webserver/BodyParser",
             "metadata": {
-                "x": -432,
-                "y": 648,
+                "x": -720,
+                "y": 576,
                 "width": 72,
                 "height": 72,
                 "label": "BodyParser"
@@ -257,8 +253,8 @@
             "component": "core/Merge",
             "metadata": {
                 "label": "core/Merge",
-                "x": 1296,
-                "y": 756,
+                "x": 1548,
+                "y": 792,
                 "width": 72,
                 "height": 72
             }
@@ -357,8 +353,8 @@
             "component": "core/Split",
             "metadata": {
                 "label": "core/Split",
-                "x": -243.184729230043,
-                "y": 428.58600010533974,
+                "x": -468,
+                "y": 612,
                 "width": 72,
                 "height": 72
             }
@@ -369,6 +365,76 @@
                 "label": "strings/SendString",
                 "x": 1116,
                 "y": 36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "woute/ToPorts_q50re": {
+            "component": "woute/ToPorts",
+            "metadata": {
+                "label": "woute/ToPorts",
+                "x": 468,
+                "y": 1224,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SubStr_uoq3p": {
+            "component": "strings/SubStr",
+            "metadata": {
+                "label": "strings/SubStr",
+                "x": 612,
+                "y": 1296,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "filesystem/ReadFileRaw_50k5f": {
+            "component": "filesystem/ReadFileRaw",
+            "metadata": {
+                "label": "filesystem/ReadFileRaw",
+                "x": 1296,
+                "y": 1260,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_u9u4w": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "strings/SendString",
+                "x": 684,
+                "y": 1116,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/CompileString_5aeqx": {
+            "component": "strings/CompileString",
+            "metadata": {
+                "label": "strings/CompileString",
+                "x": 864,
+                "y": 1188,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_r0om5": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "core/Split",
+                "x": 360,
+                "y": 1188,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_9r6dz": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "core/Split",
+                "x": 1008,
+                "y": 1152,
                 "width": 72,
                 "height": 72
             }
@@ -911,8 +977,7 @@
             "tgt": {
                 "process": "woute/Match_e5s4l",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -974,8 +1039,7 @@
             "tgt": {
                 "process": "woute/FromPorts_80bgs",
                 "port": "status"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -988,6 +1052,126 @@
             },
             "metadata": {
                 "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "woute/Match_ro8w0",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Split_r0om5",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_r0om5",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "woute/ToPorts_q50re",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/SendString_u9u4w",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/CompileString_5aeqx",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/CompileString_5aeqx",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Split_9r6dz",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Split_9r6dz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "filesystem/ReadFileRaw_50k5f",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Split_9r6dz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_8ut04",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFileRaw_50k5f",
+                "port": "load"
+            },
+            "tgt": {
+                "process": "core/Merge_8ut04",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFileRaw_50k5f",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_29h47",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "woute/ToPorts_q50re",
+                "port": "url"
+            },
+            "tgt": {
+                "process": "strings/CompileString_5aeqx",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "woute/ToPorts_q50re",
+                "port": "url"
+            },
+            "tgt": {
+                "process": "strings/SendString_u9u4w",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
             }
         },
         {
@@ -1061,13 +1245,6 @@
             }
         },
         {
-            "data": "/hgfdkhfkjghfkjhf",
-            "tgt": {
-                "process": "woute/Match_ro8w0",
-                "port": "match"
-            }
-        },
-        {
             "data": 1337,
             "tgt": {
                 "process": "Server",
@@ -1099,6 +1276,27 @@
             "data": "200",
             "tgt": {
                 "process": "strings/SendString_iqjcl",
+                "port": "string"
+            }
+        },
+        {
+            "data": 1,
+            "tgt": {
+                "process": "strings/SubStr_uoq3p",
+                "port": "index"
+            }
+        },
+        {
+            "data": "/",
+            "tgt": {
+                "process": "strings/CompileString_5aeqx",
+                "port": "delimiter"
+            }
+        },
+        {
+            "data": "public",
+            "tgt": {
+                "process": "strings/SendString_u9u4w",
                 "port": "string"
             }
         }
